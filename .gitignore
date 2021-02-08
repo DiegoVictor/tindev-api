@@ -1,4 +1,5 @@
 node_modules
 src/config/database.json
 .env
-__tests__/coverage
+tests/coverage
+dist
