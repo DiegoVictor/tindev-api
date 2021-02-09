@@ -17,4 +17,4 @@ class DislikeController {
   }
 }
 
-export default new DislikeController();
+export default DislikeController;

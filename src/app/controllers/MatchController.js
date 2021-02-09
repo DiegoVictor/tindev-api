@@ -13,4 +13,4 @@ class MatchController {
   }
 }
 
-export default new MatchController();
+export default MatchController;

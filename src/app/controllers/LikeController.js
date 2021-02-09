@@ -20,4 +20,4 @@ class LikeController {
   }
 }
 
-export default new LikeController();
+export default LikeController;

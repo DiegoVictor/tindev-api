@@ -17,4 +17,4 @@ class MatchDevelopers {
   }
 }
 
-export default new MatchDevelopers();
+export default MatchDevelopers;

@@ -13,4 +13,4 @@ class DeveloperExists {
   }
 }
 
-export default new DeveloperExists();
+export default DeveloperExists;
