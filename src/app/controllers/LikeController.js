@@ -3,16 +3,16 @@ import MatchDevelopers from '../services/MatchDevelopers';
 
 class LikeController {
   async store(req, res) {
-    const { user_id } = req;
-    const liked_developer = await DeveloperExists.run({
+    const { userId } = req;
+    const likedDeveloper = await developerExists.execute({
       id: req.params.liked_user_id,
     });
-    const developer = await DeveloperExists.run({ id: user_id });
+    const developer = await developerExists.execute({ id: userId });
 
-    await MatchDevelopers.run({ developer, liked_developer });
+    await matchDevelopers.execute({ developer, likedDeveloper });
 
-    if (!developer.likes.includes(liked_developer._id)) {
-      developer.likes.push(liked_developer._id);
+    if (!developer.likes.includes(likedDeveloper._id)) {
+      developer.likes.push(likedDeveloper._id);
       await developer.save();
     }
 
