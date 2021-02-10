@@ -2,14 +2,24 @@ import Developer from '../models/Developer';
 
 class MatchController {
   async index(req, res) {
-    const { user_id } = req;
-    const { likes } = await Developer.findById(user_id);
-    const matches = await Developer.find({
+    const { userId, hostUrl } = req;
+    const { likes } = await Developer.findById(userId);
+    const conditions = {
       _id: { $in: likes },
-      likes: { $in: user_id },
-    });
+      likes: { $in: [userId] },
+    };
 
-    return res.json(matches);
+    const matches = await Developer.find(conditions).lean();
+    const count = await Developer.countDocuments(conditions);
+
+    res.header('X-Total-Count', count);
+
+    return res.json(
+      matches.map(match => ({
+        ...match,
+        url: `${hostUrl}/v1/developers/${match._id}`,
+      }))
+    );
   }
 }
 
