@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken';
 
-import Api from '../services/Api';
+import GithubUser from '../services/GithubUser';
 import Developer from '../models/Developer';
 import DeveloperExists from '../services/DeveloperExists';
 
+const githubUser = new GithubUser();
 class DeveloperController {
   async index(req, res) {
     const { user_id } = req;
@@ -30,7 +31,7 @@ class DeveloperController {
 
     let developer = await Developer.findOne({ user });
     if (!developer) {
-      const { data } = await Api.get(`users/${user}`);
+      const { data } = await githubUser.execute({ user });
       const { name, bio, avatar_url: avatar } = data;
 
       developer = await Developer.create({ name, user, bio, avatar });
