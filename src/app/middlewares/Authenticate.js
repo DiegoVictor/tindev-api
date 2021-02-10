@@ -2,7 +2,7 @@ import { unauthorized } from '@hapi/boom';
 import { promisify } from 'util';
 import jwt from 'jsonwebtoken';
 
-export default async (req, res, next) => {
+export default async (req, _, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
