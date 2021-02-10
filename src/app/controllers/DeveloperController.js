@@ -4,19 +4,27 @@ import GithubUser from '../services/GithubUser';
 import Developer from '../models/Developer';
 import DeveloperExists from '../services/DeveloperExists';
 
+const developerExists = new DeveloperExists();
 const githubUser = new GithubUser();
+
 class DeveloperController {
   async index(req, res) {
-    const { user_id } = req;
+    const { userId, currentUrl } = req;
 
-    const user = await DeveloperExists.run({ id: user_id });
-    const developers = await Developer.find({
+    const user = await developerExists.execute({ id: userId });
+
+    const conditions = {
       $and: [
-        { _id: { $ne: user_id } },
+        { _id: { $ne: userId } },
         { _id: { $nin: user.likes } },
         { _id: { $nin: user.dislikes } },
       ],
-    });
+    };
+
+    const developers = await Developer.find(conditions).lean();
+    const count = await Developer.countDocuments(conditions);
+
+    res.header('X-Total-Count', count);
 
     return res.json(developers);
   }
