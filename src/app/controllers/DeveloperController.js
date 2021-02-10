@@ -22,8 +22,11 @@ class DeveloperController {
   }
 
   async show(req, res) {
-    const { avatar, name } = await DeveloperExists.run({ id: req.params.id });
-    return res.json({ avatar, name });
+    const { currentUrl } = req;
+    const { avatar, name } = await developerExists.execute({
+      id: req.params.id,
+    });
+    return res.json({ avatar, name, url: currentUrl });
   }
 
   async store(req, res) {
