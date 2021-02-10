@@ -6,7 +6,7 @@ class DeveloperExists {
   async execute({ id }) {
     const user = await Developer.findById(id);
     if (!user) {
-      throw badRequest('Developer not exists');
+      throw badRequest('Developer not exists', { code: 240 });
     }
 
     return user;
