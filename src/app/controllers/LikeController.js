@@ -1,6 +1,9 @@
 import DeveloperExists from '../services/DeveloperExists';
 import MatchDevelopers from '../services/MatchDevelopers';
 
+const developerExists = new DeveloperExists();
+const matchDevelopers = new MatchDevelopers();
+
 class LikeController {
   async store(req, res) {
     const { userId } = req;

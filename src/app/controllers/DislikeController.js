@@ -1,5 +1,7 @@
 import DeveloperExists from '../services/DeveloperExists';
 
+const developerExists = new DeveloperExists();
+
 class DislikeController {
   async store(req, res) {
     const { userId } = req;
