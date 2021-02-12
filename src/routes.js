@@ -12,4 +12,8 @@ import LikedUserIdValidator from './app/validators/LikedUserIdValidator';
 
 const routes = Router();
 
+const developerController = new DeveloperController();
+const dislikeController = new DislikeController();
+const likeController = new LikeController();
+const matchController = new MatchController();
 export default routes;
