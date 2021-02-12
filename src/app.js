@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 import 'express-async-errors';
 import cors from 'cors';
-import Express from 'express';
+import express from 'express';
 import http from 'http';
 import helmet from 'helmet';
 import Sentry from '@sentry/node';
@@ -14,10 +14,10 @@ import routes from './routes';
 import './database';
 import { setupWebSocket } from './websocket';
 
-const App = Express();
-const Server = http.Server(App);
+const app = express();
+const server = http.Server(app);
 
-setupWebSocket(Server);
+setupWebSocket(server);
 
 if (process.env.SENTRY_DSN) {
   Sentry.init({
@@ -25,10 +25,10 @@ if (process.env.SENTRY_DSN) {
   });
 }
 
-App.use(helmet());
+app.use(helmet());
 
-App.use(cors());
-App.use(Express.json());
+app.use(cors());
+app.use(express.json());
 
 if (process.env.NODE_ENV !== 'test') {
   App.use(
@@ -45,10 +45,9 @@ if (process.env.NODE_ENV !== 'test') {
   );
 }
 
-App.use(routes);
+app.use('/v1', routes);
 
-App.use((err, req, res, next) => {
-  const { payload } = err.output;
+app.use(async (err, req, res, next) => {
 
   if (err.data) {
     payload.details = err.data;
@@ -57,4 +56,4 @@ App.use((err, req, res, next) => {
   return res.status(payload.statusCode).json(payload);
 });
 
-export default Server;
+export default server;
