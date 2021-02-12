@@ -16,4 +16,25 @@ const developerController = new DeveloperController();
 const dislikeController = new DislikeController();
 const likeController = new LikeController();
 const matchController = new MatchController();
+
+routes.post('/developers', DeveloperValidator, developerController.store);
+
+routes.use(Authenticate);
+
+routes.get('/developers', developerController.index);
+routes.get('/developers/:id', IdValidator, developerController.show);
+
+routes.post(
+  '/developers/:liked_user_id/like',
+  LikedUserIdValidator,
+  likeController.store
+);
+routes.post(
+  '/developers/:disliked_user_id/dislike',
+  DislikedUserIdValidator,
+  dislikeController.store
+);
+
+routes.get('/matches', matchController.index);
+
 export default routes;
