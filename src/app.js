@@ -8,6 +8,7 @@ import helmet from 'helmet';
 import { errors } from 'celebrate';
 import { isBoom } from '@hapi/boom';
 
+import './database';
 import routes from './routes';
 import './database';
 import { setupWebSocket } from './websocket';
