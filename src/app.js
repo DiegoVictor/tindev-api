@@ -10,7 +10,7 @@ import { isBoom } from '@hapi/boom';
 
 import './database';
 import routes from './routes';
-import './database';
+import RouteAliases from './app/middlewares/RouteAliases';
 import { setupWebSocket } from './websocket';
 
 const app = express();
@@ -19,10 +19,9 @@ const server = http.Server(app);
 setupWebSocket(server);
 
 app.use(helmet());
-
 app.use(cors());
 app.use(express.json());
-
+app.use(RouteAliases);
 
 app.use('/v1', routes);
 
