@@ -5,6 +5,8 @@ import cors from 'cors';
 import express from 'express';
 import http from 'http';
 import helmet from 'helmet';
+import { errors } from 'celebrate';
+import { isBoom } from '@hapi/boom';
 
 import routes from './routes';
 import './database';
@@ -23,13 +25,19 @@ app.use(express.json());
 
 app.use('/v1', routes);
 
-app.use(async (err, req, res, next) => {
+app.use(errors());
+app.use(async (err, _, res, next) => {
+  if (isBoom(err)) {
+    const { statusCode, payload } = err.output;
 
-  if (err.data) {
-    payload.details = err.data;
+    return res.status(statusCode).json({
+      ...payload,
+      ...err.data,
+      docs: process.env.DOCS_URL,
+    });
   }
 
-  return res.status(payload.statusCode).json(payload);
+  return next(err);
 });
 
 export default server;
