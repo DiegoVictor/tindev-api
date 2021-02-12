@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
-import DeveloperConotroller from './app/controllers/DeveloperController';
-import LikeController from './app/controllers/LikeController';
+import DeveloperController from './app/controllers/DeveloperController';
 import DislikeController from './app/controllers/DislikeController';
 import MatchController from './app/controllers/MatchController';
 import DeveloperStore from './app/validators/Developer/Store';
