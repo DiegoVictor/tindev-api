@@ -1,6 +1,4 @@
 import { Router } from 'express';
-import ExpressBrute from 'express-brute';
-import RedisStore from 'express-brute-redis';
 
 import DeveloperConotroller from './app/controllers/DeveloperController';
 import LikeController from './app/controllers/LikeController';
