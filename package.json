@@ -1,7 +1,6 @@
 {
   "name": "tindev",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "sucrase ./src -d ./dist --transforms imports",
