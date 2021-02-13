@@ -6,7 +6,7 @@ module.exports = {
   // automock: false,
 
   // Stop running tests after `n` failures
-  bail: 1,
+  bail: 0,
 
   // Respect "browser" field in package.json when resolving modules
   // browser: false,
@@ -24,10 +24,10 @@ module.exports = {
   collectCoverageFrom: ['src/app/**/*.js'],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: '__tests__/coverage',
+  coverageDirectory: 'tests/coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ['src/app/services/Api.js'],
+  // coveragePathIgnorePatterns: ['src/app/services/Api.js'],
 
   // A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: ['text', 'lcov'],
@@ -45,10 +45,10 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  globalSetup: './__tests__/setup.js',
+  globalSetup: './tests/setup.js',
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  globalTeardown: './__tests__/teardown.js',
+  globalTeardown: './tests/teardown.js',
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
@@ -99,7 +99,7 @@ module.exports = {
   // resetModules: false,
 
   // A path to a custom resolver
-  // resolver: null,
+  resolver: './tests/custom_resolver.js',
 
   // Automatically restore mock state between every test
   // restoreMocks: false,
@@ -134,7 +134,7 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ['**/__tests__/**/*.test.js'],
+  testMatch: ['**/tests/**/*.spec.js'],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
