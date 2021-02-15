@@ -120,7 +120,7 @@ GET http://localhost:3333/v1/developers
 
 ## Routes
 |route|HTTP Method|params|description|auth method
-|:---|:---:|:---:|:---:|:---:|:---:
+|:---|:---:|:---:|:---:|:---:
 |`/developers`|POST|Body with Github `username`.|Authenticates users, return a Bearer Token and user's data.|:x:
 |`/developers`|GET| - |List developers not liked or disliked yet.|Bearer
 |`/developers/:id`|GET|`id` of the developer.|Return one developer.|Bearer
