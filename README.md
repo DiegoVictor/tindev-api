@@ -1,5 +1,5 @@
 # [API] Tindev
-[![Travis (.org)](https://img.shields.io/travis/DiegoVictor/tindev-api?logo=travis&style=flat-square)](https://travis-ci.org/DiegoVictor/tindev-api)
+[![Travis (.org)](https://img.shields.io/travis/com/DiegoVictor/tindev-api?logo=travis&style=flat-square)](https://travis-ci.com/DiegoVictor/tindev-api.svg?branch=master)
 [![mongo](https://img.shields.io/badge/mongodb-3.6.3-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![redis](https://img.shields.io/badge/redis-2.8.0-d92b21?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
 [![nodemon](https://img.shields.io/badge/nodemon-1.19.4-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
