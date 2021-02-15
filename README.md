@@ -83,7 +83,7 @@ npm run dev:server
 Instead of only throw a simple message and HTTP Status Code this API return friendly errors:
 ```json
 {
-  "statusCode": 429,
+  "statusCode": 400,
   "error": "Bad Request",
   "message": "Developer not exists",
   "code": 240,
