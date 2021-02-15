@@ -1,17 +1,17 @@
 import request from 'supertest';
 import faker from 'faker';
-import Mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 import app from '../../src/app';
 
 describe('Authenticate', () => {
   afterAll(async () => {
-    await Mongoose.disconnect();
+    await mongoose.disconnect();
   });
 
   it('should not be able autheticate', async () => {
     const response = await request(app)
-      .get('/developers')
+      .get('/v1/developers')
       .expect(401)
       .send();
 
@@ -23,7 +23,7 @@ describe('Authenticate', () => {
 
   it('should not be able autheticate', async () => {
     const response = await request(app)
-      .get('/developers')
+      .get('/v1/developers')
       .expect(401)
       .set('Authorization', faker.random.uuid())
       .send();
