@@ -1,8 +1,8 @@
 import request from 'supertest';
-import Mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 import app from '../../src/app';
-import factory from '../utils/factories';
+import factory from '../utils/factory';
 import Developer from '../../src/app/models/Developer';
 import jwtoken from '../utils/jwtoken';
 
@@ -12,27 +12,27 @@ describe('Dislike', () => {
   });
 
   afterAll(async () => {
-    await Mongoose.disconnect();
+    await mongoose.disconnect();
   });
 
   it('should be able to dislike an user', async () => {
-    const [user, dislike_user] = await factory.createMany('Developer', 2);
+    const [user, dislikeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
     const response = await request(app)
-      .post(`/developers/${dislike_user._id}/dislike`)
+      .post(`/v1/developers/${dislikeUser._id}/dislike`)
       .set('Authorization', `Bearer ${token}`)
       .send();
 
-    expect(response.body.dislikes).toContain(dislike_user._id.toString());
+    expect(response.body.dislikes).toContain(dislikeUser._id.toString());
   });
 
   it('should not be able to dislike an user', async () => {
-    const [user, dislike_user] = await factory.createMany('Developer', 2);
+    const [user, dislikeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
     await user.delete();
 
     const response = await request(app)
-      .post(`/developers/${dislike_user._id}/dislike`)
+      .post(`/v1/developers/${dislikeUser._id}/dislike`)
       .set('Authorization', `Bearer ${token}`)
       .expect(400)
       .send();
@@ -44,12 +44,13 @@ describe('Dislike', () => {
   });
 
   it('should not be able to dislike an user that not exists', async () => {
-    const [user, dislike_user] = await factory.createMany('Developer', 2);
+    const [user, dislikeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
-    dislike_user.remove();
+
+    await dislikeUser.remove();
 
     const response = await request(app)
-      .post(`/developers/${dislike_user._id}/dislike`)
+      .post(`/v1/developers/${dislikeUser._id}/dislike`)
       .set('Authorization', `Bearer ${token}`)
       .expect(400)
       .send();
@@ -61,17 +62,17 @@ describe('Dislike', () => {
   });
 
   it('should be able to dislike an user twice', async () => {
-    const [user, dislike_user] = await factory.createMany('Developer', 2);
+    const [user, dislikeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
 
-    user.dislikes.push(dislike_user._id);
+    user.dislikes.push(dislikeUser._id);
     await user.save();
 
     const response = await request(app)
-      .post(`/developers/${dislike_user._id}/dislike`)
+      .post(`/v1/developers/${dislikeUser._id}/dislike`)
       .set('Authorization', `Bearer ${token}`)
       .send();
 
-    expect(response.body.dislikes).toContain(dislike_user._id.toString());
+    expect(response.body.dislikes).toContain(dislikeUser._id.toString());
   });
 });

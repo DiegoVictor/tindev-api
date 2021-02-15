@@ -1,12 +1,12 @@
 import request from 'supertest';
 import faker from 'faker';
-import Mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 import app from '../../src/app';
 import jwtoken from '../utils/jwtoken';
-import factory from '../utils/factories';
+import factory from '../utils/factory';
 import Developer from '../../src/app/models/Developer';
-import { connect, emit, to } from '../../__mocks__/socket.io';
+import { connect, emit, to } from '../../mocks/socket.io';
 
 describe('Like', () => {
   beforeEach(async () => {
@@ -14,27 +14,43 @@ describe('Like', () => {
   });
 
   afterAll(async () => {
-    await Mongoose.disconnect();
+    await mongoose.disconnect();
   });
 
   it('should be able to like an user', async () => {
-    const [user, like_user] = await factory.createMany('Developer', 2);
+    const [user, likeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
     const response = await request(app)
-      .post(`/developers/${like_user._id}/like`)
+      .post(`/v1/developers/${likeUser._id}/like`)
       .set('Authorization', `Bearer ${token}`)
       .send();
 
-    expect(response.body.likes).toContain(like_user._id.toString());
+    expect(response.body.likes).toContain(likeUser._id.toString());
+  });
+
+  it('should be able to like twice an user', async () => {
+    const [user, likeUser] = await factory.createMany('Developer', 2);
+    const token = jwtoken(user.id);
+
+    user.likes.push(likeUser._id);
+    await user.save();
+
+    const response = await request(app)
+      .post(`/v1/developers/${likeUser._id}/like`)
+      .set('Authorization', `Bearer ${token}`)
+      .send();
+
+    expect(response.body.likes).toContain(likeUser._id.toString());
   });
 
   it('should not be able to like an user', async () => {
-    const [user, like_user] = await factory.createMany('Developer', 2);
+    const [user, likeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
+
     await user.delete();
 
     const response = await request(app)
-      .post(`/developers/${like_user._id}/like`)
+      .post(`/v1/developers/${likeUser._id}/like`)
       .set('Authorization', `Bearer ${token}`)
       .expect(400)
       .send();
@@ -46,12 +62,13 @@ describe('Like', () => {
   });
 
   it('should not be able to like an user that not exists', async () => {
-    const [user, like_user] = await factory.createMany('Developer', 2);
+    const [user, likeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
-    like_user.remove();
+
+    await likeUser.remove();
 
     const response = await request(app)
-      .post(`/developers/${like_user._id}/like`)
+      .post(`/v1/developers/${likeUser._id}/like`)
       .set('Authorization', `Bearer ${token}`)
       .expect(400)
       .send();
@@ -64,16 +81,16 @@ describe('Like', () => {
 
   it('should be able to emit a match to users', async () => {
     const user = await factory.create('Developer');
-    const match_user = await factory.create('Developer', {
+    const matchUser = await factory.create('Developer', {
       likes: [user._id.toString()],
     });
     const token = jwtoken(user.id);
 
-    const user_socket_id = faker.random.number();
-    const match_user_socket_id = faker.random.number();
+    const userSocketId = faker.random.number();
+    const matchUserSocketId = faker.random.number();
 
     connect({
-      id: user_socket_id,
+      id: userSocketId,
       handshake: {
         query: {
           developer_id: user._id,
@@ -82,23 +99,23 @@ describe('Like', () => {
     });
 
     connect({
-      id: match_user_socket_id,
+      id: matchUserSocketId,
       handshake: {
         query: {
-          developer_id: match_user._id,
+          developer_id: matchUser._id,
         },
       },
     });
 
     await request(app)
-      .post(`/developers/${match_user._id}/like`)
+      .post(`/v1/developers/${matchUser._id}/like`)
       .set('Authorization', `Bearer ${token}`)
       .send();
 
-    expect(to).toHaveBeenNthCalledWith(1, user_socket_id.toString());
-    expect(emit).toHaveBeenNthCalledWith(1, 'match', match_user.toObject());
+    expect(to).toHaveBeenNthCalledWith(1, userSocketId.toString());
+    expect(emit).toHaveBeenNthCalledWith(1, 'match', matchUser.toObject());
 
-    expect(to).toHaveBeenNthCalledWith(2, match_user_socket_id.toString());
+    expect(to).toHaveBeenNthCalledWith(2, matchUserSocketId.toString());
     expect(emit).toHaveBeenNthCalledWith(2, 'match', user.toObject());
   });
 });
