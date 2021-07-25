@@ -86,8 +86,8 @@ describe('Like', () => {
     });
     const token = jwtoken(user.id);
 
-    const userSocketId = faker.random.number();
-    const matchUserSocketId = faker.random.number();
+    const userSocketId = faker.datatype.number();
+    const matchUserSocketId = faker.datatype.number();
 
     connect({
       id: userSocketId,
