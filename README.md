@@ -9,7 +9,7 @@
 [![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/tindev-api?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/tindev-api)
 [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/DiegoVictor/tindev-api/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)<br>
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Tindev&uri=https%3A%2F%2Fraw.githubusercontent.com%2FDiegoVictor%2Ftindev-api%2Fmaster%2FInsomnia_2021-01-09.json)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Tindev&uri=https%3A%2F%2Fraw.githubusercontent.com%2FDiegoVictor%2Ftindev-api%2Fmaster%2FInsomnia_2021-07-24.json)
 
 Responsible for provide data to the [`web`](https://github.com/DiegoVictor/tindev-web) and [`mobile`](https://github.com/DiegoVictor/tindev-app) front-ends. Allows users to register yourself, see other registered users, like or dislake them and see past matches. The app has friendly errors, use JWT to logins, validation, also a simple versioning was made.
 
