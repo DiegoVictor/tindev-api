@@ -1,11 +1,11 @@
 # [API] Tindev
 [![Travis (.org)](https://img.shields.io/travis/com/DiegoVictor/tindev-api?logo=travis&style=flat-square)](https://travis-ci.com/DiegoVictor/tindev-api.svg?branch=master)
-[![mongo](https://img.shields.io/badge/mongodb-3.6.3-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![redis](https://img.shields.io/badge/redis-2.8.0-d92b21?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
-[![nodemon](https://img.shields.io/badge/nodemon-1.19.4-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
-[![eslint](https://img.shields.io/badge/eslint-6.8.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
+[![mongo](https://img.shields.io/badge/mongodb-5.13.3-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![redis](https://img.shields.io/badge/redis-3.1.2-d92b21?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
+[![nodemon](https://img.shields.io/badge/nodemon-2.0.12-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
+[![eslint](https://img.shields.io/badge/eslint-7.31.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![airbnb-style](https://flat.badgen.net/badge/style-guide/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
-[![jest](https://img.shields.io/badge/jest-24.9.0-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
+[![jest](https://img.shields.io/badge/jest-26.6.3-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
 [![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/tindev-api?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/tindev-api)
 [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/DiegoVictor/tindev-api/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)<br>
