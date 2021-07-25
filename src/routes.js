@@ -4,7 +4,7 @@ import DeveloperController from './app/controllers/DeveloperController';
 import DislikeController from './app/controllers/DislikeController';
 import LikeController from './app/controllers/LikeController';
 import MatchController from './app/controllers/MatchController';
-import Authenticate from './app/middlewares/Authenticate';
+import authenticate from './app/middlewares/authenticate';
 import DeveloperValidator from './app/validators/DeveloperValidator';
 import DislikedUserIdValidator from './app/validators/DislikedUserIdValidator';
 import IdValidator from './app/validators/IdValidator';
@@ -19,7 +19,7 @@ const matchController = new MatchController();
 
 routes.post('/developers', DeveloperValidator, developerController.store);
 
-routes.use(Authenticate);
+app.use(authenticate);
 
 routes.get('/developers', developerController.index);
 routes.get('/developers/:id', IdValidator, developerController.show);
