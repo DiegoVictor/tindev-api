@@ -64,8 +64,8 @@ In this file you may configure your Redis database connection, JWT settings, the
 |APP_PORT|Port number where the app will run.|`3333`
 |JWT_SECRET|A alphanumeric random string. Used to create signed tokens.| -
 |JWT_EXPIRATION_TIME|How long time will be the token valid. See [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#usage) repo for more information.|`7d`
-|MONGO_URL|MongoDB connection url.|`mongodb://127.0.0.1:27017/tindev`
-|REDIS_HOST|Redis host. For Windows users using Docker Toolbox maybe be necessary in your `.env` file set the host to `192.168.99.100` (docker machine IP) instead of localhost or `127.0.0.1`.|`127.0.0.1`
+|MONGO_URL|MongoDB connection url.|`mongodb://mongo:27017/tindev`
+|REDIS_HOST|Redis host. |`redis`
 |REDIS_PORT|Redis port.|`6379`
 |DOCS_URL|An url to docs where users can find more information about the app's internal code errors.|`https://github.com/DiegoVictor/tindev-api#errors-reference`
 
