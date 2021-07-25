@@ -27,7 +27,7 @@ class DeveloperController {
     res.header('X-Total-Count', count);
 
     return res.json(
-      developers.map(developer => ({
+      developers.map((developer) => ({
         ...developer,
         url: `${currentUrl}/${developer._id}`,
       }))

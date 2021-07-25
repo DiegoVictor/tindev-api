@@ -14,7 +14,7 @@ let io;
 export function setupWebSocket(server) {
   io = Socket(server);
 
-  io.on('connection', async socket => {
+  io.on('connection', async (socket) => {
     const { developer_id } = socket.handshake.query;
 
     client.set(developer_id.toString(), socket.id);
@@ -22,7 +22,7 @@ export function setupWebSocket(server) {
 }
 
 export async function findConnection(id) {
-  const socketId = await new Promise(resolve => {
+  const socketId = await new Promise((resolve) => {
     client.get(id.toString(), (_, reply) => {
       resolve(reply);
     });

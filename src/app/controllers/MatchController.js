@@ -15,7 +15,7 @@ class MatchController {
     res.header('X-Total-Count', count);
 
     return res.json(
-      matches.map(match => ({
+      matches.map((match) => ({
         ...match,
         url: `${hostUrl}/v1/developers/${match._id}`,
       }))
