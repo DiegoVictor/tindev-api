@@ -42,16 +42,19 @@ $ npm install
 > Was installed and configured the [`eslint`](https://eslint.org/) and [`prettier`](https://prettier.io/) to keep the code clean and patterned.
 
 ## Configuring
-The application use two databases: [MongoDB](https://www.mongodb.com/) and [Redis](https://redis.io/). For the fastest setup is recommended to use [docker](https://www.docker.com/), see below how to setup ever database.
+The application uses two databases: [MongoDB](https://www.mongodb.com/) and [Redis](https://redis.io/). For the fastest setup is recommended to use [docker-compose](https://docs.docker.com/compose/), you just need to up all services:
+```
+$ docker-compose up -d
+```
 
 ### Redis
-Responsible to store data utilized by the websocket to alert users when a match occurs. To create a postgres container just run:
+Responsible to store data utilized by the websocket to alert users when a match occurs. If for any reason you would like to create a Redis container instead of use `docker-compose`, you can do it by running the following command:
 ```
 $ docker run --name tindev-redis -d -p 6379:6379 redis:alpine
 ```
 
 ### MongoDB
-Store all data utilized by the application. You can create a MongoDB container like so:
+Store all data utilized by the application. If for any reason you would like to create a MongoDB container instead of use `docker-compose`, you can do it by running the following command:
 ```
 $ docker run --name tindev-mongo -d -p 27017:27017 mongo
 ```
