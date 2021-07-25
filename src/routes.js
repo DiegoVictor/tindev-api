@@ -10,31 +10,31 @@ import DislikedUserIdValidator from './app/validators/DislikedUserIdValidator';
 import IdValidator from './app/validators/IdValidator';
 import LikedUserIdValidator from './app/validators/LikedUserIdValidator';
 
-const routes = Router();
+const app = Router();
 
 const developerController = new DeveloperController();
 const dislikeController = new DislikeController();
 const likeController = new LikeController();
 const matchController = new MatchController();
 
-routes.post('/developers', DeveloperValidator, developerController.store);
+app.post('/developers', DeveloperValidator, developerController.store);
 
 app.use(authenticate);
 
-routes.get('/developers', developerController.index);
-routes.get('/developers/:id', IdValidator, developerController.show);
+app.get('/developers', developerController.index);
+app.get('/developers/:id', IdValidator, developerController.show);
 
-routes.post(
+app.post(
   '/developers/:liked_user_id/like',
   LikedUserIdValidator,
   likeController.store
 );
-routes.post(
+app.post(
   '/developers/:disliked_user_id/dislike',
   DislikedUserIdValidator,
   dislikeController.store
 );
 
-routes.get('/matches', matchController.index);
+app.get('/matches', matchController.index);
 
-export default routes;
+export default app;
