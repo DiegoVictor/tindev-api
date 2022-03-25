@@ -24,11 +24,7 @@ app.use(authenticate);
 app.get('/developers', developerController.index);
 app.get('/developers/:id', IdValidator, developerController.show);
 
-app.post(
-  '/developers/:liked_user_id/like',
-  LikedUserIdValidator,
-  likeController.store
-);
+app.post('/developers/:id/like', IdValidator, likeController.store);
 app.post(
   '/developers/:disliked_user_id/dislike',
   DislikedUserIdValidator,

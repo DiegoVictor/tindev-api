@@ -7,10 +7,12 @@ const matchDevelopers = new MatchDevelopers();
 class LikeController {
   async store(req, res) {
     const { userId } = req;
-    const likedDeveloper = await developerExists.execute({
-      id: req.params.liked_user_id,
-    });
-    const developer = await developerExists.execute({ id: userId });
+    const [likedDeveloper, developer] = await Promise.all([
+      developerExists.execute({
+        id: req.params.id,
+      }),
+      developerExists.execute({ id: userId }),
+    ]);
 
     await matchDevelopers.execute({ developer, likedDeveloper });
 
