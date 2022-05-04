@@ -30,7 +30,7 @@ describe('Developer', () => {
       .send();
 
     expect(Array.isArray(response.body)).toBe(true);
-    developers.forEach(developer => {
+    developers.forEach((developer) => {
       expect(response.body).toContainEqual({
         ...developer.toJSON(),
         _id: developer._id.toString(),
