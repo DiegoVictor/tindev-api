@@ -1,5 +1,5 @@
 import Socket from 'socket.io';
-import redis from 'redis';
+import * as redis from 'redis';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import redisMock from 'redis-mock';
 

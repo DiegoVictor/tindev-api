@@ -1,9 +1,7 @@
-import { MongoMemoryServer } from 'mongodb-memory-server';
-
-const mongod = new MongoMemoryServer();
+const { MongoMemoryServer } = require('mongodb-memory-server');
 
 module.exports = async () => {
-  await mongod.start();
+  const mongod = await MongoMemoryServer.create();
 
   process.env.MONGO_URL = mongod.getUri();
   global.__MONGOD__ = mongod;
