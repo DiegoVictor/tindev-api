@@ -1,0 +1,452 @@
+{
+  "openapi":"3.0.2",
+  "info": {
+    "title":"Tindev",
+    "version":"1.0",
+    "license": {
+      "name": "MIT",
+      "url": "https://raw.githubusercontent.com/DiegoVictor/tindev-api/master/LICENSE"
+    }
+  },
+  "servers": [
+    {
+      "url":"http://localhost:3333/v1"
+    }
+  ],
+  "paths": {
+    "/developers": {
+      "get": {
+        "tags": ["Developers"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List developers not liked or disliked yet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Developer"
+                      },
+                      {
+                        "title": "Developer",
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "_id": "612d627995ac244e7cca88ac",
+                    "likes": [],
+                    "dislikes": [],
+                    "name": "Diego Fernandes",
+                    "user": "diego3g",
+                    "bio": "CTO at @Rocketseat. Passionate about education and changing people's lives through programming.",
+                    "avatar": "https://avatars.githubusercontent.com/u/2254731?v=4",
+                    "createdAt": "2021-08-30T22:58:01.547Z",
+                    "updatedAt": "2021-08-30T22:58:01.547Z",
+                    "url": "http://localhost:3333/v1/developers/612d627995ac244e7cca88ac"
+                  },
+                  {
+                    "_id": "612d628195ac244e7cca88af",
+                    "likes": [],
+                    "dislikes": [],
+                    "name": "Filipe Deschamps",
+                    "user": "filipedeschamps",
+                    "bio": "Vou fazer você se apaixonar por programação!",
+                    "avatar": "https://avatars.githubusercontent.com/u/4248081?v=4",
+                    "createdAt": "2021-08-30T22:58:09.078Z",
+                    "updatedAt": "2021-08-30T22:58:09.078Z",
+                    "url": "http://localhost:3333/v1/developers/612d628195ac244e7cca88af"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "description": "Total number of registries in the database",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Developers"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "username": "diegovictor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Authenticates users, return a Bearer Token and user's data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "developer": {
+                      "$ref": "#/components/schemas/Developer"
+                    }
+                  }
+                },
+                "example": {
+                  "developer": {
+                    "_id": "612d60e1f3cd010c10d6e567",
+                    "likes": [
+                      "612d627995ac244e7cca88ac"
+                    ],
+                    "dislikes": [
+                      "612d628195ac244e7cca88af"
+                    ],
+                    "name": "Diego Victor",
+                    "user": "diegovictor",
+                    "bio": "I have been working with PHP/Laravel and JavaScript/Node.js for +5 years. Recently I started studying ReactJs and React Native :)\r\n",
+                    "avatar": "https://avatars.githubusercontent.com/u/15165349?v=4",
+                    "createdAt": "2021-08-30T22:51:13.311Z",
+                    "updatedAt": "2021-08-30T23:24:38.747Z"
+                  },
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmQ2MGUxZjNjZDAxMGMxMGQ2ZTU2NyIsImlhdCI6MTYzMDM2NTkyNywiZXhwIjoxNjMwOTcwNzI3fQ.yREnSTJndDpDLjWpFlhLa7s1jnrTNVAZ5h2caAg2PpQ"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/developers/{id}": {
+      "get": {
+        "tags": ["Developers"],
+         "security": [
+           {
+             "bearer": []
+           }
+         ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "612d60e1f3cd010c10d6e567"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "User",
+                  "properties": {
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "avatar": "https://avatars.githubusercontent.com/u/15165349?v=4",
+                  "name": "Diego Victor",
+                  "url": "http://localhost:3333/v1/developers/612d60e1f3cd010c10d6e567"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Developer not exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "statusCode": 400,
+                  "error": "Bad Request",
+                  "message": "Developer not exists",
+                  "code": 240
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/developers/{id}/like": {
+      "post": {
+        "tags": ["Developers"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "612d627995ac244e7cca88ac"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Like a developer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Developer"
+                },
+                "example": {
+                  "_id": "612d60e1f3cd010c10d6e567",
+                  "likes": [
+                    "612d627995ac244e7cca88ac"
+                  ],
+                  "dislikes": [
+                    "612d628195ac244e7cca88af"
+                  ],
+                  "name": "Diego Victor",
+                  "user": "diegovictor",
+                  "bio": "I have been working with PHP/Laravel and JavaScript/Node.js for +5 years. Recently I started studying ReactJs and React Native :)\r\n",
+                  "avatar": "https://avatars.githubusercontent.com/u/15165349?v=4",
+                  "createdAt": "2021-08-30T22:51:13.311Z",
+                  "updatedAt": "2021-08-30T23:24:38.747Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Developer not exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "statusCode": 400,
+                  "error": "Bad Request",
+                  "message": "Developer not exists",
+                  "code": 240
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/developers/{id}/dislike": {
+      "post": {
+        "tags": ["Developers"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "612d628195ac244e7cca88af"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dislike a developer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Developer"
+                },
+                "example": {
+                  "_id": "612d60e1f3cd010c10d6e567",
+                  "likes": [
+                    "612d627995ac244e7cca88ac"
+                  ],
+                  "dislikes": [],
+                  "name": "Diego Victor",
+                  "user": "diegovictor",
+                  "bio": "I have been working with PHP/Laravel and JavaScript/Node.js for +5 years. Recently I started studying ReactJs and React Native :)\r\n",
+                  "avatar": "https://avatars.githubusercontent.com/u/15165349?v=4",
+                  "createdAt": "2021-08-30T22:51:13.311Z",
+                  "updatedAt": "2021-08-30T23:19:03.940Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Developer not exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "statusCode": 400,
+                  "error": "Bad Request",
+                  "message": "Developer not exists",
+                  "code": 240
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matches": {
+      "get": {
+        "tags": ["Matches"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List developers you liked in the past",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Developer"
+                  }
+                },
+                "example": [
+                  {
+                    "_id": "612d627995ac244e7cca88ac",
+                    "likes": [
+                      "612d60e1f3cd010c10d6e567"
+                    ],
+                    "dislikes": [],
+                    "name": "Diego Fernandes",
+                    "user": "diego3g",
+                    "bio": "CTO at @Rocketseat. Passionate about education and changing people's lives through programming.",
+                    "avatar": "https://avatars.githubusercontent.com/u/2254731?v=4",
+                    "createdAt": "2021-08-30T22:58:01.547Z",
+                    "updatedAt": "2021-08-30T22:58:01.547Z",
+                    "url": "http://localhost:3333/v1/developers/612d627995ac244e7cca88ac"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "description": "Total number of registries in the database",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Developer": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "likes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dislikes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "Error": {
+        "properties": {
+          "statusCode": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  }
+}
