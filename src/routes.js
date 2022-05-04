@@ -6,9 +6,7 @@ import LikeController from './app/controllers/LikeController';
 import MatchController from './app/controllers/MatchController';
 import authenticate from './app/middlewares/authenticate';
 import DeveloperValidator from './app/validators/DeveloperValidator';
-import DislikedUserIdValidator from './app/validators/DislikedUserIdValidator';
 import IdValidator from './app/validators/IdValidator';
-import LikedUserIdValidator from './app/validators/LikedUserIdValidator';
 
 const app = Router();
 
@@ -25,11 +23,7 @@ app.get('/developers', developerController.index);
 app.get('/developers/:id', IdValidator, developerController.show);
 
 app.post('/developers/:id/like', IdValidator, likeController.store);
-app.post(
-  '/developers/:disliked_user_id/dislike',
-  DislikedUserIdValidator,
-  dislikeController.store
-);
+app.post('/developers/:id/dislike', IdValidator, dislikeController.store);
 
 app.get('/matches', matchController.index);
 
