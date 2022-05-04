@@ -9,8 +9,10 @@ class MatchController {
       likes: { $in: [userId] },
     };
 
-    const matches = await Developer.find(conditions).lean();
-    const count = await Developer.countDocuments(conditions);
+    const [matches, count] = await Promise.all([
+      Developer.find(conditions).lean(),
+      Developer.countDocuments(conditions),
+    ]);
 
     res.header('X-Total-Count', count);
 

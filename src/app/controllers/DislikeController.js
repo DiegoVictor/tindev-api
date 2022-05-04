@@ -5,10 +5,12 @@ const developerExists = new DeveloperExists();
 class DislikeController {
   async store(req, res) {
     const { userId } = req;
-    const dislikedDeveloper = await developerExists.execute({
-      id: req.params.disliked_user_id,
-    });
-    const developer = await developerExists.execute({ id: userId });
+    const [dislikedDeveloper, developer] = await Promise.all([
+      developerExists.execute({
+        id: req.params.id,
+      }),
+      developerExists.execute({ id: userId }),
+    ]);
 
     if (!developer.dislikes.includes(dislikedDeveloper._id)) {
       developer.dislikes.push(dislikedDeveloper._id);

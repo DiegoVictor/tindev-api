@@ -21,8 +21,10 @@ class DeveloperController {
       ],
     };
 
-    const developers = await Developer.find(conditions).lean();
-    const count = await Developer.countDocuments(conditions);
+    const [developers, count] = await Promise.all([
+      Developer.find(conditions).lean(),
+      Developer.countDocuments(conditions),
+    ]);
 
     res.header('X-Total-Count', count);
 
@@ -53,7 +55,7 @@ class DeveloperController {
       developer = await Developer.create({ name, user, bio, avatar });
     }
 
-    return res.json({
+    return res.status(201).json({
       developer,
       token: jwt.sign({ id: developer._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRATION_TIME,
