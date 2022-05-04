@@ -5,11 +5,11 @@
   "scripts": {
     "build": "sucrase ./src -d ./dist --transforms imports",
     "dev:server": "nodemon src/server.js --legacy-watch",
-    "test": "set NODE_ENV=test&jest --runInBand"
+    "test": "jest --runInBand"
   },
   "dependencies": {
-    "@hapi/boom": "^9.0.0",
-    "axios": "^0.26.1",
+    "@hapi/boom": "^10.0.0",
+    "axios": "^0.27.2",
     "celebrate": "^15.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -34,7 +34,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^4.0.0",
     "factory-girl": "^5.0.4",
-    "jest": "^27.5.1",
+    "jest": "^28.0.3",
     "mongodb-memory-server": "^8.5.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
