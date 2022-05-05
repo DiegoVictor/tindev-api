@@ -1,6 +1,6 @@
 language: node_js
 install:
-  - npm ci
+  - npm ci --platform=linux --arch=x64
   - npm install -g codecov
 node_js:
   - 16
