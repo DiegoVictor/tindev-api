@@ -23,6 +23,7 @@
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
     "@faker-js/faker": "^6.1.2",
     "@sucrase/jest-plugin": "^2.0.0",
     "@types/jest": "^27.4.1",
