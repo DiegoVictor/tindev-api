@@ -1,14 +1,6 @@
 import Socket from 'socket.io';
-import * as redis from 'redis';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import redisMock from 'redis-mock';
+import { getClient } from './database/redis';
 
-let { createClient } = redis;
-if (process.env.NODE_ENV === 'test') {
-  createClient = redisMock.createClient;
-}
-
-const client = createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
 let io;
 
 export function setupWebSocket(server) {
@@ -17,11 +9,13 @@ export function setupWebSocket(server) {
   io.on('connection', async (socket) => {
     const { developer_id } = socket.handshake.query;
 
+    const client = await getClient();
     client.set(developer_id.toString(), socket.id);
   });
 }
 
 export async function findConnection(id) {
+  const client = await getClient();
   const socketId = await new Promise((resolve) => {
     client.get(id.toString(), (_, reply) => {
       resolve(reply);
