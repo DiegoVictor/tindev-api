@@ -10,7 +10,7 @@ import { isBoom } from '@hapi/boom';
 import swagger from 'swagger-ui-express';
 
 import swaggerDocument from './swagger.json';
-import './database';
+import './database/mongodb';
 import routes from './routes';
 import routeAliases from './app/middlewares/routeAliases';
 import { setupWebSocket } from './websocket';
