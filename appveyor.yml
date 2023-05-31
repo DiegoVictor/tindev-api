@@ -1,5 +1,13 @@
 version: 1.0.{build}
 image: Ubuntu
+environment:
+  APP_URL: http://localhost
+  APP_PORT: 3333
+  MONGO_URL: mongodb://mongo:27017/tindev
+  REDIS_HOST: redis
+  REDIS_PORT: 6379
+  JWT_EXPIRATION_TIME: 7d
+  JWT_SECRET: testing
 install:
   - sh: npm ci
 build: off
