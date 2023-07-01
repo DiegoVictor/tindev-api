@@ -1,5 +1,5 @@
 import request from 'supertest';
-import faker from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import mongoose from 'mongoose';
 
 import app from '../../src/app';
@@ -25,7 +25,7 @@ describe('Authenticate', () => {
     const response = await request(app)
       .get('/v1/developers')
       .expect(401)
-      .set('Authorization', faker.datatype.uuid())
+      .set('Authorization', faker.string.uuid())
       .send();
 
     expect(response.body).toMatchObject({

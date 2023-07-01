@@ -1,7 +1,7 @@
 import request from 'supertest';
 import MockAdapter from 'axios-mock-adapter';
 import mongoose from 'mongoose';
-import faker from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
 import app from '../../src/app';
 import factory from '../utils/factory';

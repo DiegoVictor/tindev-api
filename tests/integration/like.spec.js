@@ -1,5 +1,5 @@
 import request from 'supertest';
-import faker from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import mongoose from 'mongoose';
 
 import app from '../../src/app';
@@ -86,8 +86,8 @@ describe('Like', () => {
     });
     const token = jwtoken(user.id);
 
-    const userSocketId = faker.datatype.number();
-    const matchUserSocketId = faker.datatype.number();
+    const userSocketId = faker.number.int();
+    const matchUserSocketId = faker.number.int();
 
     connect({
       id: userSocketId,
