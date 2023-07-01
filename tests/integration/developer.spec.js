@@ -45,7 +45,8 @@ describe('Developer', () => {
   it('should not be able to get a list of developers', async () => {
     const [user] = await factory.createMany('Developer', 5);
     const token = jwtoken(user.id);
-    await user.delete();
+
+    await Developer.findByIdAndDelete(user._id);
 
     const response = await request(app)
       .get('/v1/developers')

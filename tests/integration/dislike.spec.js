@@ -29,7 +29,8 @@ describe('Dislike', () => {
   it('should not be able to dislike an user', async () => {
     const [user, dislikeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
-    await user.delete();
+
+    await Developer.findByIdAndDelete(user._id);
 
     const response = await request(app)
       .post(`/v1/developers/${dislikeUser._id}/dislike`)
@@ -47,7 +48,7 @@ describe('Dislike', () => {
     const [user, dislikeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
 
-    await dislikeUser.remove();
+    await Developer.findByIdAndDelete(dislikeUser._id);
 
     const response = await request(app)
       .post(`/v1/developers/${dislikeUser._id}/dislike`)

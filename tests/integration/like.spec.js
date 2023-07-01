@@ -47,7 +47,7 @@ describe('Like', () => {
     const [user, likeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
 
-    await user.delete();
+    await Developer.findByIdAndDelete(user._id);
 
     const response = await request(app)
       .post(`/v1/developers/${likeUser._id}/like`)
@@ -65,7 +65,7 @@ describe('Like', () => {
     const [user, likeUser] = await factory.createMany('Developer', 2);
     const token = jwtoken(user.id);
 
-    await likeUser.remove();
+    await Developer.findByIdAndDelete(likeUser._id);
 
     const response = await request(app)
       .post(`/v1/developers/${likeUser._id}/like`)
