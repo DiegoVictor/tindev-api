@@ -1,11 +1,11 @@
 # [API] Tindev
 [![AppVeyor](https://img.shields.io/appveyor/build/diegovictor/tindev-api?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/DiegoVictor/tindev-api)
-[![mongoose](https://img.shields.io/badge/mongoose-6.3.2-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![redis](https://img.shields.io/badge/redis-4.1.0-d92b21?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
-[![nodemon](https://img.shields.io/badge/nodemon-2.0.16-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
-[![eslint](https://img.shields.io/badge/eslint-8.14.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
+[![mongoose](https://img.shields.io/badge/mongoose-7.3.1-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![redis](https://img.shields.io/badge/redis-4.6.7-d92b21?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
+[![nodemon](https://img.shields.io/badge/nodemon-2.0.22-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
+[![eslint](https://img.shields.io/badge/eslint-8.44.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![airbnb-style](https://flat.badgen.net/badge/style-guide/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
-[![jest](https://img.shields.io/badge/jest-28.0.3-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
+[![jest](https://img.shields.io/badge/jest-29.5.0-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
 [![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/tindev-api?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/tindev-api)
 [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://raw.githubusercontent.com/DiegoVictor/tindev-api/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)<br>
