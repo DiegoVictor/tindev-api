@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Ubuntu
+image: Ubuntu2204
 environment:
   APP_URL: http://localhost
   APP_PORT: 3333
