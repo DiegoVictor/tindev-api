@@ -16,12 +16,8 @@ export function setupWebSocket(server) {
 
 export async function findConnection(id) {
   const client = await getClient();
-  const socketId = await new Promise((resolve) => {
-    client.get(id.toString(), (_, reply) => {
-      resolve(reply);
-    });
-  });
 
+  const socketId = await client.get(id.toString());
   if (typeof socketId === 'string') {
     return socketId;
   }
