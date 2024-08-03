@@ -10,7 +10,7 @@ export function setupWebSocket(server) {
     const { developer_id } = socket.handshake.query;
 
     const client = await getClient();
-    client.set(developer_id.toString(), socket.id);
+    await client.set(developer_id.toString(), socket.id);
   });
 }
 
@@ -21,6 +21,7 @@ export async function findConnection(id) {
   if (typeof socketId === 'string') {
     return socketId;
   }
+
   return null;
 }
 
