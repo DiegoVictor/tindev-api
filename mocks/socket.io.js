@@ -5,7 +5,7 @@ export const to = jest.fn(() => {
 });
 
 let callback;
-export const connect = socket => {
+export const connect = (socket) => {
   callback(socket);
 };
 
