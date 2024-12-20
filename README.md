@@ -1,6 +1,6 @@
 # [API] Tindev
 [![AppVeyor](https://img.shields.io/appveyor/build/diegovictor/tindev-api?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/DiegoVictor/tindev-api)
-[![mongoose](https://img.shields.io/badge/mongoose-8.7.1-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![mongodb](https://img.shields.io/badge/mongodb-6.9.0-13aa52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![redis](https://img.shields.io/badge/redis-4.7.0-d92b21?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
 [![nodemon](https://img.shields.io/badge/nodemon-3.1.7-76d04b?style=flat-square&logo=nodemon)](https://nodemon.io/)
 [![eslint](https://img.shields.io/badge/eslint-8.57.1-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
